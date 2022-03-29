@@ -1,0 +1,17 @@
+Name: Zeyi Yan, Xiaoyu Zhou, Armando
+
+Project: Memory Management
+
+- Brief descriptions on data structure and algorithm:
+   	- The freelist is a form of linkedlist and is it used to simulated a memory block. Every node in the freelist has two children nodes, which are size and a pointer to the next linkedlist.
+	- `getmem(uintptr_t size)` will return a pointer to a block of memory. The block should be somewhat larger than the given size. if `getmem` finds a block on the free list that is substantially larger than the storage requested, it should divide that block and return a pointer to a portion that is large enough to satisfy the request, leaving the remainder on the free list. But if the block is only a little bit larger than the requested size, then it doesn't make sense to split it and leave a tiny chunk on the free list that is unlikely to be useful in satisfying future requests.
+	- `freemem(void* p)` will free and combine the given blcok of the memory to the whole available block of the storage, which means reattaching to freelist. If the block is physically located in memory adjacent to one or more other free blocks, then the free blocks involved will be combined into a single larger block.
+
+
+- Bench summary
+	While running the bench, our program was able to run specific percent of getmem by the input argument pctget. When the NTRIALS is relatively small, out program will allocate a large amount of memory in first 30% to 40% of the pench test session. And less memory was allocated in the rest part of the test. When the NTRIALS is relatively big, the program will allocate amount of memory equally in the test session. For a test with NTRIALS = 100, the program will allocate about average 10,000 bytes of memory each 10 percent period. And changing LARGE_LIMIT and SMALL_LIMIT will influence the size ofn allocated memory.
+	For the running speed, the program will finish running after about 0.0001s when TRIALS = 100. And it will run for 0.003s for TRIALS = 10,000. In that case, the running speed is fast and acceptable. However the efficiency can be further improved if we want to get a better memory manager as there are still a lot of memory being allocated after running a large amount of getting memory. 
+
+- Source
+	- Google, StackOverFlow, CSE374 Lecture Slide
+
